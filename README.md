@@ -1,0 +1,2 @@
+# JumpKingIA
+Proyecto Semestral IA
