@@ -560,7 +560,6 @@ class Player {
                     this.currentPos.x = min(chosenLine.x1, chosenLine.x2) - this.width - 1;
                     if (this.IsMovingRight())
                         this.currentSpeed.x = 0 - this.currentSpeed.x / 2;
-
                     if (!this.isOnGround) this.hasBumped = true;
                 }
 
