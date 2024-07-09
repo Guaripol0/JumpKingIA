@@ -283,7 +283,7 @@ class Player {
 
     CalculateFitness() {
         // current best fitness max just including height is 640,000, getting a coin has to be the most important thing so
-        let coinValue = 500000;
+        let coinValue = 50;
         let heightThisLevel = (this.bestHeightReached - (height * this.bestLevelReached));
         this.fitness = heightThisLevel * heightThisLevel + coinValue * this.numberOfCoinsPickedUp;
     }

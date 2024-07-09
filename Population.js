@@ -48,12 +48,18 @@ class Population {
 
     }
 
+    SetFitnessForAll(){
+        for (let i = 0; i < this.players.length; i++){
+            this.players[i].CalculateFitness();
+        }
+    }
+
     SetBestPlayer() {
 
         this.bestPlayerIndex = 0;
         this.newLevelReached = false;
         for (let i = 0; i < this.players.length; i++) {
-            if (this.players[i].bestHeightReached > this.players[this.bestPlayerIndex].bestHeightReached) {
+            if (this.players[i].fitness > this.players[this.bestPlayerIndex].fitness) {
                 this.bestPlayerIndex = i;
             }
         }
@@ -122,6 +128,7 @@ class Population {
 
     NaturalSelection() {
         let nextGen = [];
+        this.SetFitnessForAll();
         this.SetBestPlayer();
         this.CalculateFitnessSum();
 
@@ -129,7 +136,7 @@ class Population {
 
         nextGen.push(this.players[this.bestPlayerIndex].clone());
         for (let i = 1; i < this.players.length; i++) {
-            let parent = this.SelectParent();
+            let parent = this.players[this.bestPlayerIndex];
             let baby = parent.clone()
             // if the parent fell to the previous level then mutate the baby at the action that caused them to fall
             if(parent.fellToPreviousLevel){

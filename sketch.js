@@ -23,7 +23,7 @@ let showingCoins = true;
 let levelImages = [];
 
 let placingPlayer = false;
-let placingCoins = false;
+let placingCoins = true;
 let playerPlaced = false;
 
 let testingSinglePlayer = false;
@@ -43,7 +43,7 @@ let levelDrawn = false;
 
 let startingPlayerActions = 5;
 let increaseActionsByAmount = 5;
-let increaseActionsEveryXGenerations = 10;
+let increaseActionsEveryXGenerations = 3;
 let evolationSpeed = 1;
 
 
