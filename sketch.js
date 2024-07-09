@@ -23,7 +23,7 @@ let showingCoins = true;
 let levelImages = [];
 
 let placingPlayer = false;
-let placingCoins = true;
+let placingCoins = false;
 let playerPlaced = false;
 
 let testingSinglePlayer = false;
