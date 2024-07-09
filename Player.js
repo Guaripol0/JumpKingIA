@@ -14,7 +14,7 @@ let blizzardImageSpeedMultiplier = 50;
 let iceFrictionAcceleration = 0.2;
 let playerIceRunAcceleration = 0.2;
 
-let mutePlayers = true;
+let mutePlayers = true;                                                                                         
 
 class PlayerState {
     constructor() {

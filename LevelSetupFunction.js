@@ -1699,7 +1699,7 @@ function setupLevels() {
     levels[37].coins.push(new Coin(1042, 151));
     levels[42].coins.push(new Coin(986, 306));
 
-    // levels[0].coins.push(new Coin( 595,30 , "progress" ));
+    levels[0].coins.push(new Coin( 595,30 , "progress" ));
 
 
     levels[1].coins.push(new Coin( 143,148 , "progress" ));
@@ -1726,6 +1726,7 @@ function setupLevels() {
     levels[37].coins.push(new Coin( 1005,181 , "progress" ));
     levels[39].coins.push(new Coin( 365,187 , "progress" ));
 
+    levels[0].hasProgressionCoins = true;
     levels[1].hasProgressionCoins = true;
     levels[2].hasProgressionCoins = true;
     levels[3].hasProgressionCoins = true;

@@ -26,10 +26,20 @@ class Population {
         this.cloneOfBestPlayerFromPreviousGeneration = this.players[0].clone();
     }
 
+    VisualizePopulationState() {
+        console.log("Generation:", this.gen);
+        console.log("Best Height:", this.bestHeight);
+        console.log("Best Player Index:", this.bestPlayerIndex);
+        console.log("Current Highest Player Index:", this.currentHighestPlayerIndex);
+        console.log("Current Best Level Reached:", this.currentBestLevelReached);
+        console.log("Clone of the best plater from previus generation:", this.cloneOfBestPlayerFromPreviousGeneration)
+    }
+    
     Update() {
+        this.VisualizePopulationState();
         for (let i = 0; i < this.players.length; i++) {
             this.players[i].Update();
-            // if(this.players[i].currentLevelNo >0 && !this.showingFail ){
+            // if(this.players[i].currentLevelNo >0 && !this.showingFail ) {
             //     this.showingFail= true;
             //     this.failPlayerNo = i;
             //     this.ResetAllPlayers()
