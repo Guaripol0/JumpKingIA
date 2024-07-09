@@ -7,6 +7,7 @@ class Level{
         this.isIceLevel = false;
         this.coins = [];
         this.hasProgressionCoins = false;
+        this.winCat = [];
     }
 
     show(){
@@ -20,6 +21,11 @@ class Level{
         if(showingCoins){
             for(let c of this.coins){
                 c.show();
+            }
+        }
+        if (showingCat) {
+            for (let cat of this.winCat) {
+                cat.Show();
             }
         }
 

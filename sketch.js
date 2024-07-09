@@ -20,13 +20,14 @@ let fallenImage = null;
 let fallImage = null;
 let showingLines = true;
 let showingCoins = true;
+let showingCat = true;
 let levelImages = [];
 
 let placingPlayer = false;
 let placingCoins = false;
 let playerPlaced = false;
 
-let testingSinglePlayer = false;
+let testingSinglePlayer = true;
 
 
 let fallSound = null;
@@ -58,7 +59,7 @@ function preload() {
     run3Image = loadImage('images/poses/run3.png')
     fallenImage = loadImage('images/poses/fallen.png')
     fallImage = loadImage('images/poses/fall.png')
-
+    catWinImage = loadImage('images/WinCat.png')
 
     snowImage = loadImage('images/snow3.png')
 
@@ -78,7 +79,7 @@ function preload() {
 function setup() {
     setupCanvas();
     player = new Player();
-    population = new Population(600);
+    population = new Population(10);
     setupLevels();
     jumpSound.playMode('sustain');
     fallSound.playMode('sustain');

@@ -27,12 +27,12 @@ class Population {
     }
 
     VisualizePopulationState() {
-        console.log("Generation:", this.gen);
-        console.log("Best Height:", this.bestHeight);
-        console.log("Best Player Index:", this.bestPlayerIndex);
-        console.log("Current Highest Player Index:", this.currentHighestPlayerIndex);
-        console.log("Current Best Level Reached:", this.currentBestLevelReached);
-        console.log("Clone of the best plater from previus generation:", this.cloneOfBestPlayerFromPreviousGeneration)
+        // console.log("Generation:", this.gen);
+        // console.log("Best Height:", this.bestHeight);
+        // console.log("Best Player Index:", this.bestPlayerIndex);
+        // console.log("Current Highest Player Index:", this.currentHighestPlayerIndex);
+        // console.log("Current Best Level Reached:", this.currentBestLevelReached);
+        // console.log("Clone of the best plater from previus generation:", this.cloneOfBestPlayerFromPreviousGeneration)
     }
     
     Update() {
@@ -158,6 +158,8 @@ class Population {
             //     this.players[i].fitness = 0;
             // }<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             this.fitnessSum += this.players[i].fitness;
+            console.log("jugador numero", i , ":",  this.players[i]);
+            console.log("fitness acumulado", this.fitnessSum);
         }
     }
 
