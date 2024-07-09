@@ -44,7 +44,7 @@ let levelDrawn = false;
 
 let startingPlayerActions = 5;
 let increaseActionsByAmount = 5;
-let increaseActionsEveryXGenerations = 10;
+let increaseActionsEveryXGenerations = 3;
 let evolationSpeed = 1;
 
 
