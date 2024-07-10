@@ -165,8 +165,8 @@ class Population {
             //     this.players[i].fitness = 0;
             // }<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             this.fitnessSum += this.players[i].fitness;
-            console.log("jugador numero", i , ":",  this.players[i]);
-            console.log("fitness acumulado", this.fitnessSum);
+            // console.log("jugador numero", i , ":",  this.players[i]);
+            // console.log("fitness acumulado", this.fitnessSum);
         }
     }
 

@@ -1201,7 +1201,9 @@ class Player {
     }
 
     GetGlobalHeight() {
-        return (height - this.currentPos.y) + height * this.currentLevelNo
+        const globalHeight = (height - this.currentPos.y) + height * this.currentLevelNo; 
+        print(globalHeight);
+        return globalHeight
     }
 
     playerLanded() {

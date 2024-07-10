@@ -27,7 +27,7 @@ let placingPlayer = false;
 let placingCoins = false;
 let playerPlaced = false;
 
-let testingSinglePlayer = true;
+let testingSinglePlayer = false;
 
 
 let fallSound = null;
@@ -79,7 +79,7 @@ function preload() {
 function setup() {
     setupCanvas();
     player = new Player();
-    population = new Population(10);
+    population = new Population(50);
     setupLevels();
     jumpSound.playMode('sustain');
     fallSound.playMode('sustain');
