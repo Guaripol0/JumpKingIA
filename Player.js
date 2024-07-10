@@ -307,6 +307,7 @@ class Player {
         this.UpdateJumpTimer()
         this.CheckForLevelChange();
         this.CheckForCoinCollisions();
+        this.checkForWinCatCollision();
 
         if (this.getNewPlayerStateAtEndOfUpdate) {
             if (this.currentLevelNo !== 37) {
@@ -1298,6 +1299,27 @@ class Player {
             }
         }
 
+    }
+
+    checkForWinCatCollision() {
+        if (this.currentLevelNo == 4) { // Nivel donde está el gato ganador 
+            let currentLevel = levels[this.currentLevelNo];
+            for (let i = 0; i < currentLevel.winCat.length; i++) {
+                if (currentLevel.winCat[i].collidesWithPlayerWin(this)) {
+                    console.log("hola");
+                    this.winGame();
+                    break; // Salir del bucle una vez que se gana el juego
+                }
+                else {
+                    console.log("fallo");
+                }
+            }
+        }
+    }
+
+    winGame() {
+        console.log("¡Has ganado el juego!");
+        noLoop(); // Detener el bucle de dibujo
     }
 }
 
