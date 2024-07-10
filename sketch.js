@@ -27,7 +27,7 @@ let placingPlayer = false;
 let placingCoins = false;
 let playerPlaced = false;
 
-let testingSinglePlayer = true;
+let testingSinglePlayer = false;
 
 
 let fallSound = null;
@@ -44,7 +44,7 @@ let levelDrawn = false;
 
 let startingPlayerActions = 5;
 let increaseActionsByAmount = 5;
-let increaseActionsEveryXGenerations = 3;
+let increaseActionsEveryXGenerations = 10;
 let evolationSpeed = 1;
 
 
@@ -79,7 +79,7 @@ function preload() {
 function setup() {
     setupCanvas();
     player = new Player();
-    population = new Population(10);
+    population = new Population(600);
     setupLevels();
     jumpSound.playMode('sustain');
     fallSound.playMode('sustain');
@@ -195,6 +195,7 @@ function draw() {
         text('Gen: ' + population.gen, 30, 35);
         text('Moves: ' + population.players[0].brain.instructions.length, 200, 35);
         text('Best Height: ' + population.bestHeight, 400, 35);
+        text('best level: ' + population.currentBestLevelReached, 650, 35)
     }
 
 
