@@ -26,20 +26,10 @@ class Population {
         this.cloneOfBestPlayerFromPreviousGeneration = this.players[0].clone();
     }
 
-    VisualizePopulationState() {
-        // console.log("Generation:", this.gen);
-        // console.log("Best Height:", this.bestHeight);
-        // console.log("Best Player Index:", this.bestPlayerIndex);
-        // console.log("Current Highest Player Index:", this.currentHighestPlayerIndex);
-        // console.log("Current Best Level Reached:", this.currentBestLevelReached);
-        // console.log("Clone of the best plater from previus generation:", this.cloneOfBestPlayerFromPreviousGeneration)
-    }
-    
     Update() {
-        this.VisualizePopulationState();
         for (let i = 0; i < this.players.length; i++) {
             this.players[i].Update();
-            // if(this.players[i].currentLevelNo >0 && !this.showingFail ) {
+            // if(this.players[i].currentLevelNo >0 && !this.showingFail ){
             //     this.showingFail= true;
             //     this.failPlayerNo = i;
             //     this.ResetAllPlayers()
@@ -48,24 +38,17 @@ class Population {
 
     }
 
-    SetFitnessForAll(){
-        for (let i = 0; i < this.players.length; i++){
-            this.players[i].CalculateFitness();
-        }
-    }
-
     SetBestPlayer() {
+
         this.bestPlayerIndex = 0;
         this.newLevelReached = false;
         for (let i = 0; i < this.players.length; i++) {
-            if (this.players[i].fitness >= this.players[this.bestPlayerIndex].fitness) {
+            if (this.players[i].bestHeightReached > this.players[this.bestPlayerIndex].bestHeightReached) {
                 this.bestPlayerIndex = i;
             }
         }
-        console.log('bestplaer level: ' + this.players[this.bestPlayerIndex].bestLevelReached);
-        console.log('popu bestlevel: ' + this.currentBestLevelReached)
+
         if (this.players[this.bestPlayerIndex].bestLevelReached > this.currentBestLevelReached) {
-            console.log('population yupdate');
             this.currentBestLevelReached = this.players[this.bestPlayerIndex].bestLevelReached;
             this.newLevelReached = true;
             this.reachedBestLevelAtActionNo = this.players[this.bestPlayerIndex].bestLevelReachedOnActionNo;
@@ -128,9 +111,7 @@ class Population {
     }
 
     NaturalSelection() {
-        console.log('natural selection')
         let nextGen = [];
-        this.SetFitnessForAll();
         this.SetBestPlayer();
         this.CalculateFitnessSum();
 
@@ -138,8 +119,8 @@ class Population {
 
         nextGen.push(this.players[this.bestPlayerIndex].clone());
         for (let i = 1; i < this.players.length; i++) {
-            let parent = this.SelectParent();
-            let baby = parent.clone();
+            let parent = this.players[this.bestPlayerIndex];
+            let baby = parent.clone()
             // if the parent fell to the previous level then mutate the baby at the action that caused them to fall
             if(parent.fellToPreviousLevel){
                 baby.brain.mutateActionNumber(parent.fellOnActionNo);
@@ -167,8 +148,6 @@ class Population {
             //     this.players[i].fitness = 0;
             // }<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             this.fitnessSum += this.players[i].fitness;
-            //console.log("jugador numero", i , ":",  this.players[i]);
-            //console.log("fitness acumulado", this.fitnessSum);
         }
     }
 

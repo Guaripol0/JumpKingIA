@@ -20,7 +20,6 @@ let fallenImage = null;
 let fallImage = null;
 let showingLines = true;
 let showingCoins = true;
-let showingCat = true;
 let levelImages = [];
 
 let placingPlayer = false;
@@ -59,7 +58,7 @@ function preload() {
     run3Image = loadImage('images/poses/run3.png')
     fallenImage = loadImage('images/poses/fallen.png')
     fallImage = loadImage('images/poses/fall.png')
-    catWinImage = loadImage('images/WinCat.png')
+
 
     snowImage = loadImage('images/snow3.png')
 
