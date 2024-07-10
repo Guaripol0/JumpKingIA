@@ -1726,7 +1726,7 @@ function setupLevels() {
     levels[37].coins.push(new Coin( 1005,181 , "progress" ));
     levels[39].coins.push(new Coin( 365,187 , "progress" ));
 
-    levels[4].winCat.push(new WinCat(90, 130, "win"));
+    levels[5].winCat.push(new WinCat(480, 735, "win"));
 
     levels[1].hasProgressionCoins = true;
     levels[2].hasProgressionCoins = true;

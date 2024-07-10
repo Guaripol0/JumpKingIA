@@ -27,8 +27,8 @@ let placingPlayer = false;
 let placingCoins = false;
 let playerPlaced = false;
 
-let testingSinglePlayer = false;
-
+let testingSinglePlayer = true;
+let testingPopulation = false;
 
 let fallSound = null;
 let jumpSound = null;
@@ -87,11 +87,6 @@ function setup() {
     bumpSound.playMode('sustain');
     landSound.playMode('sustain');
 
-    // lines.push(new Line(200,height - 80,width - 200, height-80));
-    // lines.push(new Line(10,height - 500,200, height-500));
-    // lines.push(new Line(200,height - 100,200, height-500));
-
-
 }
 
 function drawMousePosition() {
@@ -117,23 +112,6 @@ let levelNumber = 0;
 
 function draw() {
     background(10);
-
-
-    // if(frameCount % 5==0 ){
-    //
-    //     levelNumber  = (levelNumber +1)%43;
-    // }
-    // image(backgroundImage,0,0);
-    // if (!creatingLines) {
-
-    //     if (!placingPlayer || playerPlaced) {
-    //
-    //         player.Update();
-    //         player.Show();
-    //     }
-    // } else {
-    //     image(levelImages[levelNumber], 0, 0)
-    // }
     push()
     translate(0, 50);
     if (testingSinglePlayer) {
@@ -205,8 +183,6 @@ function draw() {
 let previousFrameRate = 60;
 
 function showLevel(levelNumberToShow) {
-    // print(levelNumberToShow)
-    // image(levels[levelNumberToShow].levelImage, 0, 0)
     levels[levelNumberToShow].show();
 }
 

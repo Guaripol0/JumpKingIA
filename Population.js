@@ -134,7 +134,7 @@ class Population {
             this.players[i] = nextGen[i];
             // if(!this.newLevelReached && this.currentBestLevelReached !== 0){// && this.currentBestLevelReached !== 37){
             //     this.players[i].loadStartOfBestLevelPlayerState();
-            // }<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // }
         }
 
         this.gen++;

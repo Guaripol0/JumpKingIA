@@ -22,12 +22,10 @@ class PlayerState {
         this.currentSpeed = createVector(0, 0);
         this.isOnGround = false;
 
-
         this.blizzardForce = 0;
         this.blizzardForceAccelerationDirection = 1;
         this.maxBlizzardForceTimer = 0;
         this.snowImagePosition = 0;
-
 
         this.bestHeightReached = 0;
         this.bestLevelReached = 0;
@@ -57,7 +55,6 @@ class PlayerState {
         this.maxBlizzardForceTimer = player.maxBlizzardForceTimer;
         this.snowImagePosition = player.snowImagePosition;
 
-
         this.bestHeightReached = player.bestHeightReached;
         this.bestLevelReached = player.bestLevelReached;
         this.reachedHeightAtStepNo = player.reachedHeightAtStepNo;
@@ -77,16 +74,10 @@ class PlayerState {
         player.currentSpeed = this.currentSpeed.copy();
         player.isOnGround = this.isOnGround
 
-
         player.blizzardForce = this.blizzardForce;
         player.blizzardForceAccelerationDirection = this.blizzardForceAccelerationDirection;
         player.maxBlizzardForceTimer = this.maxBlizzardForceTimer;
         player.snowImagePosition = this.snowImagePosition;
-
-        // player.blizzardForce = 0;
-        // player.blizzardForceAccelerationDirection  = 1;
-        // player.maxBlizzardForceTimer = 0;
-        // player.snowImagePosition = 0;
 
         player.bestHeightReached = this.bestHeightReached;
         player.bestLevelReached = this.bestLevelReached;
@@ -98,9 +89,6 @@ class PlayerState {
         player.jumpStartingHeight = this.jumpStartingHeight;
         player.facingRight = this.facingRight;
 
-
-        // player.isWaitingToStartAction = this.isWaitingToStartAction;
-        // player.actionStarted = this.actionStarted;
     }
 
     clone() {
@@ -108,7 +96,6 @@ class PlayerState {
         clone.currentPos = this.currentPos.copy();
         clone.currentSpeed = this.currentSpeed.copy();
         clone.isOnGround = this.isOnGround
-
 
         clone.blizzardForce = this.blizzardForce;
         clone.blizzardForceAccelerationDirection = this.blizzardForceAccelerationDirection;
@@ -126,9 +113,6 @@ class PlayerState {
         clone.jumpStartingHeight = this.jumpStartingHeight;
         clone.facingRight = this.facingRight;
 
-
-        // clone.isWaitingToStartAction = this.isWaitingToStartAction;
-        // clone.actionStarted = this.actionStarted;
         return clone;
     }
 
@@ -137,11 +121,9 @@ class PlayerState {
 
 class Player {
 
-
     constructor() {
         this.width = 50;
         this.height = 65;
-
         // this.currentPos = createVector(width / 2, height - 200); // this is the top left corner of the hitbox
         this.currentPos = createVector(width / 2, height - 200); // this is the top left corner of the hitbox
         this.currentSpeed = createVector(0, 0);
@@ -183,19 +165,12 @@ class Player {
 
         this.playersDead = false;
 
-
         this.previousSpeed = createVector(0, 0);
-
 
         this.bestHeightReached = 0;
         this.bestLevelReached = 0;
         this.reachedHeightAtStepNo = 0;
         this.bestLevelReachedOnActionNo = 0;
-        //
-        // this.jumpSound = loadSound('sounds/jump.mp3')
-        // this.fallSound = loadSound('sounds/fall.mp3')
-        // bumpSound = loadSound('sounds/bump.mp3')
-        // landSound = loadSound('sounds/land.mp3')
 
         this.fitness = 0;
         this.hasFinishedInstructions = false;
@@ -203,7 +178,6 @@ class Player {
         this.fellOnActionNo = 0;
         this.playerStateAtStartOfBestLevel = new PlayerState();
         this.getNewPlayerStateAtEndOfUpdate = false;
-
 
         this.parentReachedBestLevelAtActionNo = 0;
         this.numberOfCoinsPickedUp = 0;
@@ -226,7 +200,6 @@ class Player {
         this.leftHeld = false;
         this.rightHeld = false;
 
-
         this.facingRight = true;
         this.hasBumped = false;
         this.isRunning = false;
@@ -245,7 +218,6 @@ class Player {
         this.maxBlizzardForceTimer = 0;
         this.snowImagePosition = 0;
 
-
         // ai shit
         this.aiActionTimer = 0;
         this.aiActionMaxTime = 0;
@@ -262,7 +234,6 @@ class Player {
 
         this.fitness = 0;
         this.hasFinishedInstructions = false;
-
 
     }
 
@@ -328,7 +299,6 @@ class Player {
                     this.currentSpeed.x = max(this.currentSpeed.x - gravity * 0.5, -terminalVelocity * 0.5);
                 }
             } else {
-
                 this.currentSpeed.y = min(this.currentSpeed.y + gravity, terminalVelocity);
             }
         }
@@ -354,19 +324,15 @@ class Player {
             this.blizzardForce = maxBlizzardForce * this.blizzardForceAccelerationDirection;
         }
 
-
         this.snowImagePosition += this.blizzardForce * blizzardImageSpeedMultiplier;
-
 
         if (!this.isOnGround && levels[this.currentLevelNo].isBlizzardLevel) {
             this.currentSpeed.x += this.blizzardForce;
         }
 
-
     }
 
     CheckCollisions(currentLines) {
-
         let collidedLines = [];
         for (let i = 0; i < currentLines.length; i++) {
             if (this.IsCollidingWithLine(currentLines[i])) {
@@ -425,7 +391,6 @@ class Player {
             } else if (this.IsMovingLeft()) {
                 this.currentPos.x = chosenLine.x1;
             } else {
-                //ok so fuck
                 //this.bad = true
                 // this means we've hit a wall but we arent moving left or right
                 // meaning we prioritised the floor first which stopped our velocity
@@ -502,24 +467,16 @@ class Player {
                 correctionX = midpoint.x - playerCornerPos.x;
                 correctionY = midpoint.y - playerCornerPos.y;
 
-
                 this.currentPos.x += correctionX;
                 this.currentPos.y += correctionY;
-                // this.currentPos.x += correctionX>0 ? 1:-1;
-                // this.currentPos.y += correctionY>0 ? 1:-1;
-
 
                 //get the current speed based on the dot product of the current veloctiy with the line
                 let lineVector = createVector(chosenLine.x2 - chosenLine.x1, chosenLine.y2 - chosenLine.y1)
                 lineVector.normalize();
-                // print(lineVector);
 
                 let speedMagnitude = p5.Vector.dot(this.currentSpeed, lineVector);
                 // print(this.currentSpeed)
                 this.currentSpeed = p5.Vector.mult(lineVector, speedMagnitude);
-                // print(speedMagnitude,lineVector,this.currentSpeed)
-                // this.currentSpeed.x = 0.5*gravity;
-                // this.currentSpeed.y = 0.5*gravity;
                 if (top) {
                     this.currentSpeed = createVector(0, 0)
                     this.isSlidding = false;
@@ -534,14 +491,12 @@ class Player {
 
                 let playerCornerPos = null;
                 if (top) {// bounce off the point as if it were horizontal
-                    // print("top only");
                     let closestPointY = max(chosenLine.y1, chosenLine.y2)
                     this.currentPos.y = closestPointY + 1;
                     this.currentSpeed.y = 0 - this.currentSpeed.y / 2;
 
                 }
                 if (bottom) {//treat like floor
-                    // print("bottome only");
                     let closestPointY = min(chosenLine.y1, chosenLine.y2)
                     // this.isOnGround = true
                     this.currentSpeed = createVector(0, 0)
@@ -550,14 +505,12 @@ class Player {
 
                 }
                 if (left) {// treat like a left wall
-                    // print('left only')
                     this.currentPos.x = max(chosenLine.x1, chosenLine.x2) + 1;
                     if (this.IsMovingLeft())
                         this.currentSpeed.x = 0 - this.currentSpeed.x / 2;
                     if (!this.isOnGround) this.hasBumped = true;
                 }
                 if (right) {// treat like a right wall
-                    // print("right only")
                     this.currentPos.x = min(chosenLine.x1, chosenLine.x2) - this.width - 1;
                     if (this.IsMovingRight())
                         this.currentSpeed.x = 0 - this.currentSpeed.x / 2;
@@ -565,13 +518,10 @@ class Player {
                     if (!this.isOnGround) this.hasBumped = true;
                 }
 
-
             }
-
 
         }
         if (collidedLines.length > 1) {
-            // print(chosenLine)
             this.currentNumberOfCollisionChecks += 1;
             if (this.currentNumberOfCollisionChecks > this.maxCollisionChecks) {
                 this.hasFinishedInstructions = true;
@@ -580,17 +530,12 @@ class Player {
                 this.CheckCollisions(currentLines);
             }
 
-            //ok so this is gonna need some splaining.
-            // so if we've "landed" but it wasnt the last correction then we need to check again if the dude has landed
-            // just incase the corrections have moved him off the surface
             if (potentialLanding) {
                 if (this.IsPlayerOnGround(currentLines)) {
                     this.playerLanded();
                 }
-
             }
         }
-
     }
 
     Show() {
@@ -603,7 +548,6 @@ class Player {
             if (this.currentLevelNo === population.showingLevelNo - 1) {
                 if (this.currentPos.y < this.height) {
                     translate(0, height);
-
                 } else {
                     pop();
                     return;
@@ -613,15 +557,6 @@ class Player {
 
 
         translate(this.currentPos.x, this.currentPos.y);
-
-        // if (this.jumpHeld) {
-        //     // this.height = this.height / 2
-        //     // translate(0, this.height)
-        //     image(squatImage,-20,-35 );
-        //
-        // }else{
-
-
         let imageToUse = this.GetImageToUseBasedOnState();
 
         if (!this.facingRight) {
@@ -646,20 +581,7 @@ class Player {
             }
 
         }
-        //
-        // fill(255, 0, 0);
-        // noFill();
-        // stroke(255,0,0);
-        // strokeWeight(2);
-        // // noStroke()
-        // rect(0, 0, this.width, this.height);
-
-
-        // if (this.jumpHeld) {
-        //     this.height = this.height * 2
-        // }
         pop();
-
 
         //show snow
         if (levels[this.currentLevelNo].isBlizzardLevel && (!alreadyShowingSnow||testingSinglePlayer)) {
@@ -669,12 +591,8 @@ class Player {
                 snowDrawPosition += width;
             }
             snowDrawPosition = snowDrawPosition % width;
-
-            // let snowYPosition = (frameCount/2) % height;
             image(snowImage, snowDrawPosition, 0);
             image(snowImage, snowDrawPosition - width, 0);
-            // image(snowImage, snowDrawPosition, snowYPosition- height);
-            // image(snowImage, snowDrawPosition - width, snowYPosition- height);
             alreadyShowingSnow = true;
         }
 
@@ -685,9 +603,7 @@ class Player {
         if (!this.isOnGround) {
             return;
         }
-
         let verticalJumpSpeed = map(this.jumpTimer, 0, maxJumpTimer, minJumpSpeed, maxJumpSpeed)
-        // print(this.jumpTimer,minJumpSpeed,maxJumpSpeed,verticalJumpSpeed )
         if (this.leftHeld) {
             this.currentSpeed = createVector(-jumpSpeedHorizontal, -verticalJumpSpeed)
             this.facingRight = false;
@@ -716,18 +632,10 @@ class Player {
         if (l.isHorizontal) {
             var isRectWithinLineX = (l.x1 < this.currentPos.x && this.currentPos.x < l.x2) || (l.x1 < this.currentPos.x + this.width && this.currentPos.x + this.width < l.x2) || (this.currentPos.x < l.x1 && l.x1 < this.currentPos.x + this.width) || (this.currentPos.x < l.x2 && l.x2 < this.currentPos.x + this.width);
             var isRectWithinLineY = this.currentPos.y < l.y1 && l.y1 < this.currentPos.y + this.height;
-            // if (isRectWithinLineX && isRectWithinLineY) {
-            //     print(this.currentPos.x, l.x1, l.x2)
-            //     print(isRectWithinLineX, isRectWithinLineY)
-            // }
             return isRectWithinLineX && isRectWithinLineY;
         } else if (l.isVertical) {
             isRectWithinLineY = (l.y1 < this.currentPos.y && this.currentPos.y < l.y2) || (l.y1 < this.currentPos.y + this.height && this.currentPos.y + this.height < l.y2) || (this.currentPos.y < l.y1 && l.y1 < this.currentPos.y + this.height) || (this.currentPos.y < l.y2 && l.y2 < this.currentPos.y + this.height);
             isRectWithinLineX = this.currentPos.x < l.x1 && l.x1 < this.currentPos.x + this.width;
-            // if (isRectWithinLineX && isRectWithinLineY) {
-            //     print(this.currentPos.x, l.x1, l.x2)
-            //     print(isRectWithinLineX, isRectWithinLineY)
-            // }
             return isRectWithinLineX && isRectWithinLineY;
         } else {
             // ok so we need to check each side of the
@@ -801,8 +709,6 @@ class Player {
     }
 
     GetImageToUseBasedOnState() {
-
-
         if (this.jumpHeld && this.isOnGround) return squatImage;
         if (this.hasFallen) return fallenImage;
         if (this.hasBumped) return oofImage;
@@ -926,7 +832,6 @@ class Player {
 
     GetPriorityCollision(collidedLines) {
 
-
         // FIRST EDGE CASES BECAUse I SUCK AT CODING
         //ok so this is gonna need some explaining, i know there is probably a better fix but i think this will work
         //ok so if we are going up and then we hit a verticle and a horizontal and if the midpoint of the vert is lower then
@@ -949,14 +854,8 @@ class Player {
                     if (vert.midPoint.y > horiz.midPoint.y) {
                         return vert;
                     } else {
-                        // return horiz;
                     }
                 } else {
-                    // if(vert.midPoint.y < horiz.midPoint.y ){
-                    //     return vert;
-                    // }else{
-                    //     // return horiz;
-                    // }
                 }
             }
             if (horiz != null && diag != null) {
@@ -968,15 +867,11 @@ class Player {
             }
         }
 
-
         // check the inverse of the velocity to see if the corrections fit in the range
         let maxAllowedXCorrection = 0 - this.currentSpeed.x;
         let maxAllowedYCorrection = 0 - this.currentSpeed.y;
 
-
         //if multiple collisions detected use the one that requires the least correction
-
-
         let minCorrection = 10000;
         let maxCorrection = 0;
 
@@ -1011,7 +906,6 @@ class Player {
                         correction = abs(this.currentPos.x - l.x1);
                     }
                 } else {
-                    //this bitch diagonal
                     // so we're moving the point to the diagonal linees
                     // if we get the midpoint of the 2 intersection points then we gucci
                     // if there is only 1 intersection point then just treat it as a wall/ roof
@@ -1122,7 +1016,6 @@ class Player {
             this.currentLevelNo += 1;
             this.currentPos.y += height;
 
-
         } else if (this.currentPos.y > height - this.height) {
             if (this.currentLevelNo === 0) {
                 //oh no
@@ -1141,7 +1034,6 @@ class Player {
             }
 
         }
-
 
     }
 
@@ -1171,7 +1063,6 @@ class Player {
             }
         }
     }
-
 
     StartCurrentAction() {
         this.aiActionMaxTime = floor(this.currentAction.holdTime * 30);
@@ -1241,7 +1132,6 @@ class Player {
                 // this.playerStateAtStartOfBestLevel.getStateFromPlayer(this);
                 this.getNewPlayerStateAtEndOfUpdate = true;
 
-
                 //setup coins
                 this.numberOfCoinsPickedUp = 0;
                 this.progressionCoinPickedUp = false;
@@ -1261,7 +1151,6 @@ class Player {
             this.fellToPreviousLevel = true;
             this.fellOnActionNo = this.brain.currentInstructionNumber;
             this.hasFinishedInstructions = true;
-
         }
 
         if (!mutePlayers|| testingSinglePlayer) {
@@ -1302,7 +1191,7 @@ class Player {
     }
 
     checkForWinCatCollision() {
-        if (this.currentLevelNo == 4) { // Nivel donde está el gato ganador 
+        if (this.currentLevelNo == 5) { // Nivel donde está el gato ganador 
             let currentLevel = levels[this.currentLevelNo];
             for (let i = 0; i < currentLevel.winCat.length; i++) {
                 if (currentLevel.winCat[i].collidesWithPlayerWin(this)) {
