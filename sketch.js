@@ -44,7 +44,7 @@ let levelDrawn = false;
 
 let startingPlayerActions = 5;
 let increaseActionsByAmount = 5;
-let increaseActionsEveryXGenerations = 3;
+let increaseActionsEveryXGenerations = 10;
 let evolationSpeed = 1;
 
 
@@ -79,7 +79,11 @@ function preload() {
 function setup() {
     setupCanvas();
     player = new Player();
+<<<<<<< HEAD
     population = new Population(50);
+=======
+    population = new Population(600);
+>>>>>>> a4771001ac4e9a831231e12ec605c5e323408bfc
     setupLevels();
     jumpSound.playMode('sustain');
     fallSound.playMode('sustain');
@@ -195,6 +199,7 @@ function draw() {
         text('Gen: ' + population.gen, 30, 35);
         text('Moves: ' + population.players[0].brain.instructions.length, 200, 35);
         text('Best Height: ' + population.bestHeight, 400, 35);
+        text('best level: ' + population.currentBestLevelReached, 650, 35)
     }
 
 

@@ -283,11 +283,11 @@ class Player {
 
     CalculateFitness() {
         // current best fitness max just including height is 640,000, getting a coin has to be the most important thing so
-        let coinValue = 50;
+        let coinValue = 50000;
         let heightThisLevel = (this.bestHeightReached - (height * this.bestLevelReached));
         
         this.fitness = heightThisLevel * heightThisLevel + coinValue * this.numberOfCoinsPickedUp;
-        console.log("fitness Normal:", this.fitness);
+        //console.log("fitness Normal:", this.fitness);
     }
 
     Update() {
@@ -1124,15 +1124,15 @@ class Player {
 
 
         } else if (this.currentPos.y > height - this.height) {
-            if (this.currentLevelNo === 0) {
-                //oh no
-                // print("fuck me hes goin under")
-                this.currentLevelNo = 1; //lol fixed
+            if (this.currentLevelNo > 0) {
+                this.currentLevelNo -= 1;
+                this.currentPos.y -= height;
+            }
+
+            if(this.currentLevelNo === 0){
                 this.playersDead = true;
                 this.hasFinishedInstructions = true;
             }
-            this.currentLevelNo -= 1;
-            this.currentPos.y -= height;
 
             if (!this.hasFinishedInstructions && this.currentLevelNo < this.bestLevelReached - 1) {
                 this.fellToPreviousLevel = true;
@@ -1201,9 +1201,14 @@ class Player {
     }
 
     GetGlobalHeight() {
+<<<<<<< HEAD
         const globalHeight = (height - this.currentPos.y) + height * this.currentLevelNo; 
         print(globalHeight);
         return globalHeight
+=======
+        if(this.currentLevelNo === 1)console.log('level 1')
+        return (height - this.currentPos.y) + height * this.currentLevelNo
+>>>>>>> a4771001ac4e9a831231e12ec605c5e323408bfc
     }
 
     playerLanded() {
