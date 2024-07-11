@@ -160,7 +160,7 @@ class Player {
         this.aiActionMaxTime = 0;
         this.isWaitingToStartAction = false;
         this.actionStarted = false;
-        this.neural = new Neural(startingPlayerActions);
+        this.neural = new Neural(startingPlayerActions, this);
         this.currentAction = null;
 
         this.playersDead = false;

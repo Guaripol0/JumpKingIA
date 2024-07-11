@@ -20,7 +20,8 @@ class AIAction {
 }
 
 class Neural {
-    constructor(size) {
+    constructor(size, player) {
+        this.player = player;
         this.size = size;
         this.instructions = [];
         this.currentInstructionNumber = 0;
@@ -36,9 +37,9 @@ class Neural {
     getAction(inputs){
         const output = this.model.predict(inputs);
 
-        let isJump = outputs.isJump;
-        let holdTime = outputs.duration;
-        let xDirection = outputs.direction;
+        let isJump = output.isJump;
+        let holdTime = output.duration;
+        let xDirection = output.direction;
 
         return new AIAction(isJump, holdTime, xDirection);
     }
