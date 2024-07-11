@@ -37,7 +37,7 @@ let landSound = null;
 let snowImage = null;
 
 
-let population = null;
+let generation = null;
 let levelDrawn = false;
 
 
@@ -78,11 +78,8 @@ function preload() {
 
 function setup() {
     setupCanvas();
-    const stateSize = 5; // ejemplo: [posX, posY, velX, velY, isJumping]
-    const actionSize = 3; // ejemplo: [moveLeft, moveRight, jump]
-    const dqnBrain = new DQNBrain(stateSize, actionSize);
-    player = new Player(dqnBrain);
-    population = new Population(600, stateSize, actionSize);
+    player = new Player();
+    generation = new Generation(600);
     setupLevels();
     jumpSound.playMode('sustain');
     fallSound.playMode('sustain');
@@ -137,16 +134,19 @@ function draw() {
 
     }else{
 
-        if (population.AllPlayersFinished()) {
-            population.NaturalSelection();
-            if (population.gen % increaseActionsEveryXGenerations === 0) {
-                population.IncreasePlayerMoves(increaseActionsByAmount);
-            }
+        // if (population.AllPlayersFinished()) {
+        //     population.NaturalSelection();
+        //     if (population.gen % increaseActionsEveryXGenerations === 0) {
+        //         population.IncreasePlayerMoves(increaseActionsByAmount);
+        //     }
+        // }
+        if(generation.AllPlayersFinished){
+            generation.IncreasePlayerMoves(increaseActionsByAmount);
         }
         for (let i = 0; i < evolationSpeed; i++)
-            population.Update()
+            generation.Update()
 
-        population.Show();
+        generation.Show();
 
     }
 
@@ -172,10 +172,10 @@ function draw() {
         textSize(32);
         fill(255, 255, 255);
         text('FPS: ' + previousFrameRate, width - 160, 35);
-        text('Gen: ' + population.gen, 30, 35);
-        text('Moves: ' + population.players[0].brain.instructions.length, 200, 35);
-        text('Best Height: ' + population.bestHeight, 400, 35);
-        text('Best Level: ' + population.currentBestLevelReached, 650, 35)
+        //text('Gen: ' + population.gen, 30, 35);
+        text('Moves: ' + generation.players[0].brain.instructions.length, 200, 35);
+        text('Best Height: ' + generation.bestHeight, 400, 35);
+        //text('Best Level: ' + population.currentBestLevelReached, 650, 35)
     }
 
 
@@ -217,7 +217,7 @@ function keyPressed() {
             player.jumpHeld = true
             break;
         case 'R':
-            population.ResetAllPlayers()
+            generation.ResetAllPlayers()
             break;
         case 'S':
             bumpSound.stop();
@@ -247,7 +247,7 @@ function keyReleased() {
     switch (key) {
         case 'B':
             replayingBestPlayer = true;
-            cloneOfBestPlayer = population.cloneOfBestPlayerFromPreviousGeneration.clone();
+            cloneOfBestPlayer = generation.cloneOfBestPlayerFromPreviousGeneration.clone();
             evolationSpeed = 1;
             mutePlayers = false;
             break;

@@ -32,7 +32,7 @@ class PlayerState {
         this.reachedHeightAtStepNo = 0;
         this.bestLevelReachedOnActionNo = 0;
 
-        this.brainActionNumber = 0
+        this.neuralActionNumber = 0
 
         this.currentLevelNo = 0;
         this.jumpStartingHeight = 0;
@@ -59,7 +59,7 @@ class PlayerState {
         this.bestLevelReached = player.bestLevelReached;
         this.reachedHeightAtStepNo = player.reachedHeightAtStepNo;
         this.bestLevelReachedOnActionNo = player.bestLevelReachedOnActionNo;
-        this.brainActionNumber = player.brain.currentInstructionNumber;
+        this.neuralActionNumber = player.neural.currentInstructionNumber;
 
         this.currentLevelNo = player.currentLevelNo;
         this.jumpStartingHeight = player.jumpStartingHeight;
@@ -83,7 +83,7 @@ class PlayerState {
         player.bestLevelReached = this.bestLevelReached;
         player.reachedHeightAtStepNo = this.reachedHeightAtStepNo;
         player.bestLevelReachedOnActionNo = this.bestLevelReachedOnActionNo;
-        player.brain.currentInstructionNumber = this.brainActionNumber;
+        player.neural.currentInstructionNumber = this.neuralActionNumber;
 
         player.currentLevelNo = this.currentLevelNo;
         player.jumpStartingHeight = this.jumpStartingHeight;
@@ -107,7 +107,7 @@ class PlayerState {
         clone.bestLevelReached = this.bestLevelReached;
         clone.reachedHeightAtStepNo = this.reachedHeightAtStepNo;
         clone.bestLevelReachedOnActionNo = this.bestLevelReachedOnActionNo;
-        clone.brainActionNumber = this.brainActionNumber;
+        clone.neuralActionNumber = this.neuralActionNumber;
 
         clone.currentLevelNo = this.currentLevelNo;
         clone.jumpStartingHeight = this.jumpStartingHeight;
@@ -160,7 +160,7 @@ class Player {
         this.aiActionMaxTime = 0;
         this.isWaitingToStartAction = false;
         this.actionStarted = false;
-        this.brain = new Brain(startingPlayerActions);
+        this.neural = new Neural(startingPlayerActions);
         this.currentAction = null;
 
         this.playersDead = false;
@@ -224,7 +224,7 @@ class Player {
         this.isWaitingToStartAction = false;
         this.actionStarted = false;
 
-        this.brain.currentInstructionNumber = 0;
+        this.neural.currentInstructionNumber = 0;
         this.currentAction = null;
 
         this.playersDead = false;
@@ -239,9 +239,9 @@ class Player {
 
     clone() {
         let clone = new Player();
-        clone.brain = this.brain.clone();
+        clone.neural = this.neural.clone();
         clone.playerStateAtStartOfBestLevel = this.playerStateAtStartOfBestLevel.clone();
-        clone.brain.parentReachedBestLevelAtActionNo = this.bestLevelReachedOnActionNo;
+        clone.neural.parentReachedBestLevelAtActionNo = this.bestLevelReachedOnActionNo;
         return clone;
     }
 
@@ -1029,7 +1029,7 @@ class Player {
 
             if (!this.hasFinishedInstructions && this.currentLevelNo < this.bestLevelReached - 1) {
                 this.fellToPreviousLevel = true;
-                this.fellOnActionNo = this.brain.currentInstructionNumber;
+                this.fellOnActionNo = this.neural.currentInstructionNumber;
                 this.hasFinishedInstructions = true;
             }
 
@@ -1046,7 +1046,7 @@ class Player {
         //if the action hasnt started yet then start it
         //also if the ai is not on the ground and the action has already started then end the action
         if (this.isOnGround && !this.actionStarted) {
-            this.currentAction = this.brain.getNextAction();
+            this.currentAction = this.neural.getNextAction();
             if (this.currentAction === null) {
                 this.hasFinishedInstructions = true;
                 return;
@@ -1123,12 +1123,12 @@ class Player {
 
         if (this.GetGlobalHeight() > this.bestHeightReached) {
             this.bestHeightReached = this.GetGlobalHeight();
-            this.reachedHeightAtStepNo = this.brain.currentInstructionNumber;
+            this.reachedHeightAtStepNo = this.neural.currentInstructionNumber;
 
 
             if (this.bestLevelReached < this.currentLevelNo) {
                 this.bestLevelReached = this.currentLevelNo;
-                this.bestLevelReachedOnActionNo = this.brain.currentInstructionNumber;
+                this.bestLevelReachedOnActionNo = this.neural.currentInstructionNumber;
                 // this.playerStateAtStartOfBestLevel.getStateFromPlayer(this);
                 this.getNewPlayerStateAtEndOfUpdate = true;
 
@@ -1149,7 +1149,7 @@ class Player {
         // if the ai fell to a previous level then stop the actions and record when it happened
         if (this.currentLevelNo < this.bestLevelReached && this.currentLevelNo !== 23 && !this.hasFinishedInstructions) {
             this.fellToPreviousLevel = true;
-            this.fellOnActionNo = this.brain.currentInstructionNumber;
+            this.fellOnActionNo = this.neural.currentInstructionNumber;
             this.hasFinishedInstructions = true;
         }
 

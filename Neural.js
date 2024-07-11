@@ -24,7 +24,7 @@ class Neural {
         this.size = size;
         this.instructions = [];
         this.currentInstructionNumber = 0;
-        this.model = new NeuralNetwork(2, 3, 3); // aca hay que definir la cantidad de inputs hiden y outputs
+        this.model = new NeuralNetwork(2, 3, 3); // Aca hay que definir la cantidad de inputs hiden y outputs
         this.getInstruction(size);
     }
     getInstruction(size){
