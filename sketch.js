@@ -28,7 +28,6 @@ let placingCoins = false;
 let playerPlaced = false;
 
 let testingSinglePlayer = true;
-let testingPopulation = false;
 
 let fallSound = null;
 let jumpSound = null;
@@ -79,8 +78,11 @@ function preload() {
 
 function setup() {
     setupCanvas();
-    player = new Player();
-    population = new Population(600);
+    const stateSize = 5; // ejemplo: [posX, posY, velX, velY, isJumping]
+    const actionSize = 3; // ejemplo: [moveLeft, moveRight, jump]
+    const dqnBrain = new DQNBrain(stateSize, actionSize);
+    player = new Player(dqnBrain);
+    population = new Population(600, stateSize, actionSize);
     setupLevels();
     jumpSound.playMode('sustain');
     fallSound.playMode('sustain');
@@ -143,8 +145,7 @@ function draw() {
         }
         for (let i = 0; i < evolationSpeed; i++)
             population.Update()
-        // population.Update()
-        // population.Update()
+
         population.Show();
 
     }
@@ -174,7 +175,7 @@ function draw() {
         text('Gen: ' + population.gen, 30, 35);
         text('Moves: ' + population.players[0].brain.instructions.length, 200, 35);
         text('Best Height: ' + population.bestHeight, 400, 35);
-        text('best level: ' + population.currentBestLevelReached, 650, 35)
+        text('Best Level: ' + population.currentBestLevelReached, 650, 35)
     }
 
 

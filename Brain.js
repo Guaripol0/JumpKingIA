@@ -45,6 +45,8 @@ class Brain {
             isJump = true;
         }
 
+        // if ()
+
         let holdTime = random(0.1, 1);
         if(random()<chanceOfFullJump){
             holdTime = 1;
