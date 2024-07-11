@@ -545,7 +545,7 @@ class Player {
 
         //if on the previous level and is up the top, then show
         if (!replayingBestPlayer) {
-            if (this.currentLevelNo === population.showingLevelNo - 1) {
+            if (this.currentLevelNo === generation.showingLevelNo - 1) {
                 if (this.currentPos.y < this.height) {
                     translate(0, height);
                 } else {
