@@ -26,6 +26,7 @@ class Generation {
 
         // this.SetCurrentHighestPlayer()
         let highestPlayer = this.players[this.currentHighestPlayerIndex];
+        console.log(this.players[this.currentHighestPlayerIndex].currentLevelNo);
         let highestLevelNo = this.players[this.currentHighestPlayerIndex].currentLevelNo;
 
         if(highestPlayer.currentLevelNo > highestPlayer.bestLevelReached && !highestPlayer.progressionCoinPickedUp){

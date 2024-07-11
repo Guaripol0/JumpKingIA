@@ -25,16 +25,24 @@ class Neural {
         this.size = size;
         this.instructions = [];
         this.currentInstructionNumber = 0;
-        this.model = new NeuralNetwork(2, 3, 3); // Aca hay que definir la cantidad de inputs hiden y outputs
+        this.model = new NeuralNetwork(5, 3, 5); // Aca hay que definir la cantidad de inputs hiden y outputs
         this.getInstruction(size);
     }
     getInstruction(size){
         for (let i = 0; i < size; i++) {
-            this.instructions[i] = this.getAction(inputs);
+            this.instructions[i] = this.getAction();
         }
     }
 
-    getAction(inputs){
+    getAction(){
+        let inputs = [
+            this.player.currentPos.x / this.player.width,
+            this.player.currentPos.y / this.player.height,
+            this.player.currentSpeed.x,
+            this.player.currentSpeed.y,
+            this.player.isOnGrounf ? 1 : 0,
+        ];
+        
         const output = this.model.predict(inputs);
 
         let isJump = output.isJump;
@@ -60,9 +68,17 @@ class Neural {
             return null;
         }
     }
-    increaseMove(increaseMovesBy) {
+
+    increaseMoves(increaseMovesBy) {
         for (let i = 0; i < increaseMovesBy; i++) {
-            this.instructions.push(this.getAction(inputs));
+            this.instructions.push(this.getAction());
         }
+    }
+    clone() {
+        let clone = new Neural(this.size, this.player);
+        clone.instructions = this.instructions.map(instruction => instruction.clone());
+        clone.currentInstructionNumber = this.currentInstructionNumber;
+        clone.model = this.model.copy();
+        return clone;
     }
 }
