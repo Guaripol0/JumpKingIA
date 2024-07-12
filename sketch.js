@@ -79,7 +79,7 @@ function preload() {
 function setup() {
     setupCanvas();
     player = new Player();
-    generation = new Generation(600);
+    generation = new Generation(5);
     setupLevels();
     jumpSound.playMode('sustain');
     fallSound.playMode('sustain');

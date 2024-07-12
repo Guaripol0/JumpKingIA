@@ -54,15 +54,17 @@ class NeuralNetwork {
         return tf.tidy(() => {
             const xs = tf.tensor2d([inputs]);
             const ys = this.model.predict(xs);
-            
-            //console.log("ys es: ", ys);
 
             const direction = ys[0].arraySync()[0];
             const isJump = ys[1].arraySync()[0];
             const duration = ys[2].arraySync()[0];
-    
+            
+            console.log("direction", direction);
+            console.log("isJump",isJump);
+            console.log("duration", duration);
+
             return {
-                direction: direction.indexOf(Math.max(...direction)), // Tomar la dirección con la mayor probabilidad
+                direction: (direction.indexOf(Math.max(...direction))) -1, // Tomar la dirección con la mayor probabilidad
                 isJump: isJump > 0.5 ? 1 : 0, // Convertir salida de sigmoid a binario
                 duration: duration // Salida de tanh
             };

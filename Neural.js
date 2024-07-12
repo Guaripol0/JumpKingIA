@@ -45,6 +45,10 @@ class Neural {
         
         const output = this.model.predict(inputs);
 
+        console.log("El jugador");
+        console.log("Predicion de salto: ", output.isJump);
+        console.log("Predicion de cuanto tiempo tomar: ", output.holdTime);
+        console.log("Prediccion de a que direccion va: ", output.direction);
         let isJump = output.isJump;
         let holdTime = output.duration;
         let xDirection = output.direction;
