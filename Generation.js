@@ -14,6 +14,7 @@ class Generation {
         this.showingLevelNo = 0;
         this.currentBestLevelReached = 0;
         this.reachedBestLevelAtActionNo = 0;
+        this.currentHighestPlayerIndex = 0;
         this.newLevelReached = false;
         this.cloneOfBestPlayerFromPreviousGeneration = this.players[0].clone();
     }

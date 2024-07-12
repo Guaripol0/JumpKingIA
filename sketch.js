@@ -173,7 +173,7 @@ function draw() {
         fill(255, 255, 255);
         text('FPS: ' + previousFrameRate, width - 160, 35);
         //text('Gen: ' + population.gen, 30, 35);
-        text('Moves: ' + generation.players[0].brain.instructions.length, 200, 35);
+        text('Moves: ' + generation.players[0].neural.instructions.length, 200, 35);
         text('Best Height: ' + generation.bestHeight, 400, 35);
         //text('Best Level: ' + population.currentBestLevelReached, 650, 35)
     }
