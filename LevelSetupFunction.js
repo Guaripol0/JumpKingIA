@@ -1684,6 +1684,7 @@ function setupLevels() {
 
 
     // levels[0].coins.push(new Coin( 1061,653));
+    
     levels[4].coins.push(new Coin(143, 160));
     levels[5].coins.push(new Coin(801, 140));
     levels[6].coins.push(new Coin(419, 541));
@@ -1705,11 +1706,12 @@ function setupLevels() {
     levels[1].coins.push(new Coin( 143,148 , "progress" ));
     levels[1].coins.push(new Coin( 155,142 , "progress" ));
     levels[1].coins.push(new Coin( 65,148 , "progress" ));
-
+    levels[2].coins.push(new Coin( 851,726 , "progress" ));
     levels[2].coins.push(new Coin( 125,187 , "progress" ));
     levels[2].coins.push(new Coin( 51,183 , "progress" ));
     levels[3].coins.push(new Coin( 843,125 , "progress" ));
     levels[3].coins.push(new Coin( 411,170 , "progress" ));
+    levels[3].coins.push(new Coin( 383,495 , "progress" ));
     levels[4].coins.push(new Coin( 137,173 , "progress" ));
     levels[5].coins.push(new Coin( 1122,65 , "progress" ));
     levels[5].coins.push(new Coin( 1121,151 , "progress" ));
@@ -1726,7 +1728,7 @@ function setupLevels() {
     levels[37].coins.push(new Coin( 1005,181 , "progress" ));
     levels[39].coins.push(new Coin( 365,187 , "progress" ));
 
-    levels[4].winCat.push(new WinCat(90, 130, "win"));
+    levels[4].winCat.push(new WinCat(110, 130, "win"));
 
     levels[1].hasProgressionCoins = true;
     levels[2].hasProgressionCoins = true;

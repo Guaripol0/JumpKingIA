@@ -43,8 +43,8 @@ let levelDrawn = false;
 
 
 let startingPlayerActions = 5;
-let increaseActionsByAmount = 5;
-let increaseActionsEveryXGenerations = 10;
+let increaseActionsByAmount = 10;
+let increaseActionsEveryXGenerations = 5;
 let evolationSpeed = 1;
 
 

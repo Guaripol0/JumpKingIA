@@ -1306,12 +1306,8 @@ class Player {
             let currentLevel = levels[this.currentLevelNo];
             for (let i = 0; i < currentLevel.winCat.length; i++) {
                 if (currentLevel.winCat[i].collidesWithPlayerWin(this)) {
-                    console.log("hola");
                     this.winGame();
                     break; // Salir del bucle una vez que se gana el juego
-                }
-                else {
-                    console.log("fallo");
                 }
             }
         }
